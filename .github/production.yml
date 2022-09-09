@@ -14,6 +14,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
       shell: bash
       run: |
+            npm install
             vite build
             cd dist
             ln -s index.html 404.html
