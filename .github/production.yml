@@ -17,8 +17,8 @@ jobs:
             vite build
             cd dist
             ln -s index.html 404.html
-            git config --global user.email "${{ inputs.gitemail }}"
-            git config --global user.name "${{ inputs.gitname }}"
+            git config --global user.email "23285553+imrodrigoalves@users.noreply.github.com"
+            git config --global user.name "Rodrigo Alves"
             git init
             git add -A
             git commit -m 'Build production'
