@@ -2,6 +2,10 @@ name: 'Vue with Vite to Github Pages'
 description: 'This Action will Build your Vue Project and deploy it to Github Pages'
 runs:
   using: "composite"
+  with:
+    username: 'imrodrigoalve'
+    reponame: 'imrodrigoalves.github.io'
+    token: ${{ secrets.GITHUB_TOKEN }}
   steps:
       - name: Build Vue
         run: |
