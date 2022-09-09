@@ -1,28 +1,29 @@
-name: Build Vue
-on: [push]
+name: Deploy to Github Pages
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 jobs:
-  build_vue:
+  build:
     runs-on: ubuntu-latest
-    name: Build Vue
     steps:
-    - uses: actions/checkout@v2
-    - id: Build-Vue
-      uses: node:16
-      with:
-        username: 'imrodrigoalves'
-        reponame: 'imrodrigoalves.github.io'
-        token: ${{ secrets.GITHUB_TOKEN }}
-      shell: bash
-      run: |
-            npm install
-            npm run build
-            cd dist
-            ln -s index.html 404.html
-            git config --global user.email "23285553+imrodrigoalves@users.noreply.github.com"
-            git config --global user.name "Rodrigo Alves"
-            git init
-            git add -A
-            git commit -m 'Build production'
-            git push -f https://${{ inputs.username }}:${{ inputs.token }}@github.com/${{ inputs.username }}/${{ inputs.reponame }}.git master:gh-pages
-
-        
+      - uses: actions/checkout@v3
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          username: 'imrodrigoalves'
+          reponame: 'imrodrigoalves.github.io'
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          npm install
+          npm run build
+          cd dist
+          ln -s index.html 404.html
+          git config --global user.email "23285553+imrodrigoalves@users.noreply.github.com"
+          git config --global user.name "Rodrigo Alves"
+          git init
+          git add -A
+          git commit -m 'Build production'
+          git push -f https://${{ inputs.username }}:${{ inputs.token }}@github.com/${{ inputs.username }}/${{ inputs.reponame }}.git master:gh-pages
