@@ -12,6 +12,6 @@ runs:
               git config --global user.name "${{ inputs.gitname }}"
               git init
               git add -A
-              git commit -m '${{ inputs.gitmsg }}'
+              git commit -m 'Build production'
               git push -f https://${{ inputs.username }}:${{ inputs.token }}@github.com/${{ inputs.username }}/${{ inputs.reponame }}.git master:gh-pages
         shell: bash
