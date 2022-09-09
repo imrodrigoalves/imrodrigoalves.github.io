@@ -15,7 +15,7 @@ jobs:
       shell: bash
       run: |
             npm install
-            vite build
+            npm run build
             cd dist
             ln -s index.html 404.html
             git config --global user.email "23285553+imrodrigoalves@users.noreply.github.com"
