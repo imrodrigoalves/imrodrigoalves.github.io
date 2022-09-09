@@ -1,21 +1,27 @@
-name: 'Vue with Vite to Github Pages'
-description: 'This Action will Build your Vue Project and deploy it to Github Pages'
-runs:
-  using: "composite"
-  steps:
-      - name: Build Vue
-        with:
-          username: 'imrodrigoalve'
-          reponame: 'imrodrigoalves.github.io'
-          token: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-              vite build
-              cd dist
-              ln -s index.html 404.html
-              git config --global user.email "${{ inputs.gitemail }}"
-              git config --global user.name "${{ inputs.gitname }}"
-              git init
-              git add -A
-              git commit -m 'Build production'
-              git push -f https://${{ inputs.username }}:${{ inputs.token }}@github.com/${{ inputs.username }}/${{ inputs.reponame }}.git master:gh-pages
-        shell: bash
+name: Build Vue
+on: [push]
+jobs:
+  build_vue:
+    runs-on: ubuntu-latest
+    name: Build Vue
+    steps:
+    - uses: actions/checkout@v2
+    - id: Build-Vue
+      uses: node:16
+      with:
+        username: 'imrodrigoalves'
+        reponame: 'imrodrigoalves.github.io'
+        token: ${{ secrets.GITHUB_TOKEN }}
+      shell: bash
+      run: |
+            vite build
+            cd dist
+            ln -s index.html 404.html
+            git config --global user.email "${{ inputs.gitemail }}"
+            git config --global user.name "${{ inputs.gitname }}"
+            git init
+            git add -A
+            git commit -m 'Build production'
+            git push -f https://${{ inputs.username }}:${{ inputs.token }}@github.com/${{ inputs.username }}/${{ inputs.reponame }}.git master:gh-pages
+
+        
