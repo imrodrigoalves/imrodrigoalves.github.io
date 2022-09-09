@@ -3,6 +3,6 @@ import TheHeader from './components/TheHeader.vue'
 </script>
 
 <template>
-  <TheHeader></TheHeader>
+  <!-- <TheHeader></TheHeader> -->
   <RouterView />
 </template>

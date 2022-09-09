@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <header class="text-gray-600 body-font">
+  <header class="absolute top-0 w-full text-gray-600 body-font z-10">
     <div
       class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center"
     >
